@@ -7,6 +7,8 @@ export default Ember.Controller.extend({
 
     actions: {
         login: function() {
+        	var _this = this;
+
             var attemptedTrans = this.get('attemptedTransition');
             var data = this.getProperties('email', 'password');
 
@@ -22,12 +24,12 @@ export default Ember.Controller.extend({
                     }
                 });
 
-                var key = this.get('store').createRecord('apiKey', {
+                var key = _this.get('store').createRecord('apiKey', {
                     accessToken: response.api_key.access_token
                 });
 
-                this.store.find('pledge', response.api_key.user_id).then(function(pledge) {
-                    this.setProperties({
+                _this.store.find('pledge', response.api_key.user_id).then(function(pledge) {
+                    _this.setProperties({
                         token: response.api_key.access_token,
                         currentUser: pledge.getProperties('isMaster', 'name', 'email')
                     });
@@ -39,9 +41,9 @@ export default Ember.Controller.extend({
 
                     if (attemptedTrans) {
                         attemptedTrans.retry();
-                        this.set('attemptedTransition', null);
+                        _this.set('attemptedTransition', null);
                     } else {
-                        this.transitionToRoute('secret');
+                        _this.transitionToRoute('secret');
                     }
                 });
 

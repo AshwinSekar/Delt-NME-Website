@@ -6,4 +6,15 @@ var Router = Ember.Router.extend({
 });
 
 export default Router.map(function() {
+	this.resource('sessions', function() {
+		this.route('logout');
+		this.route('login');
+	});
+	this.resource('users',function() {
+		this.route('signup');
+		this.route('user', {
+			path: '/user/:user_id'
+		});
+	});
+	this.route('sercret'); // The idea is to have this route only available to authenticated users.
 });

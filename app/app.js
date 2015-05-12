@@ -18,8 +18,4 @@ App = Ember.Application.extend({
 
 loadInitializers(App, config.modulePrefix);
 
-App.ApiKeyAdapter = DS.LSAdapter.extend({
-	namespace: 'emberauth-keys'
-});
-
 export default App;

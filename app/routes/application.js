@@ -10,6 +10,10 @@ export default Ember.Route.extend({
             numberInterviewsDone: 2,
             brothersInterviewed: ['David Wu', 'Ashwin Sekar']
         });
+        this.store.push('pledge', {
+        	id: 1,
+        	isMaster: true
+        });
     },
     setupController: function(controller) {
         controller.set('model', this.store.find('pledge', 0));

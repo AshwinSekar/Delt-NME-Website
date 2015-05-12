@@ -5,6 +5,16 @@ export default Ember.Controller.extend({
         return !!this.get('model');
     }.property('model'),
 
+    tokenChanged: function() {
+    	if(Ember.isEmpty(this.get('token'))) {
+    		Ember.$.removeCookie('access_token');
+    		Ember.$.removeCookie('auth_user');
+    	} else {
+    		Ember.$.cookie('access_token', this.get('token'));
+    		Ember.$.cookie('auth_user', this.get('currentUser'));
+    	}
+    }.observes('token'),
+
     actions: {
         login: function() {
             var _this = this;

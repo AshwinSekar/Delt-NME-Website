@@ -16,5 +16,5 @@ export default Router.map(function() {
 			path: '/user/:user_id'
 		});
 	});
-	this.route('sercret'); // The idea is to have this route only available to authenticated users.
+	this.route('secret'); // The idea is to have this route only available to authenticated users.
 });

@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
 
     actions: {
         login: function() {
-        	var _this = this;
+            var _this = this;
 
             var attemptedTrans = this.get('attemptedTransition');
             var data = this.getProperties('email', 'password');
@@ -54,6 +54,20 @@ export default Ember.Controller.extend({
             });
 
 
+        },
+
+        reset: function() {
+            this.setProperties({
+                email: null,
+                password: null,
+                token: null,
+                currentUser: null
+            });
+            Ember.$.ajaxSetup({
+                headers: {
+                    'Authorization': 'Bearer none'
+                }
+            });
         }
     }
 });

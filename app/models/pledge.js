@@ -3,5 +3,11 @@ export default DS.Model.extend({
     firstName: DS.attr('string'),
     lastName: DS.attr('string'),
     numberInterviewsDone: DS.attr('number'),
-    brothersInterviewed: DS.attr()
+    brothersInterviewed: DS.attr(),
+    name: DS.attr('string'),
+    email: DS.attr('string'),
+    password: DS.attr('string'),
+    password_confirmation: DS.attr('string'),
+    apiKeys: DS.hasMany('apiKey'),
+    errors: {}
 });

@@ -1,3 +1,5 @@
+import DS from 'ember-data';
+
 export default DS.Model.extend({
     isMaster: DS.attr('boolean'),
     firstName: DS.attr('string'),

@@ -29,7 +29,18 @@ App.AuthenticatedRoute = Ember.Route.extend({
     redirectToLogin: function(transition) {
         this.controllerfor('sessions').set('attemptedTransition', transition); // Store where they want to go after login
         return this.transitionTo('sessions'); // Make them login and then transitionTo where they want to go
+    },
+
+    actions: {
+    	error: function(reason, transition) {
+    		if(reason.status === 401) { // unauthorised access error
+    			this.redirectToLogin(transition);
+    		} else {
+    			console.log('Unkown problem: ' + reason + transition);
+    		}
+    	}
     }
+    
 });
 
 export default App;

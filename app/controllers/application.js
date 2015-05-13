@@ -1,13 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    loggedIn: function() {
-        return !!this.get('model');
-    }.property('model'),
 
     attemptedTransition: null,
     token: Ember.$.cookie('access_token'),
     currentUser: Ember.$.cookie('auth_user'),
+
+    isAuthenticated: function() {
+        return !Ember.isEmpty(this.get('currentUser'));
+    }.property('currentUser'),
 
     tokenChanged: function() {
         if (Ember.isEmpty(this.get('token'))) {

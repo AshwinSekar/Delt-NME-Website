@@ -6,7 +6,9 @@ export default DS.Model.extend({
     lastName: DS.attr('string'),
     numberInterviewsDone: DS.attr('number'),
     brothersInterviewed: DS.attr(),
-    name: DS.attr('string'),
+    name: function() {
+        return this.get('firstName') + ' ' + this.get('lastName');
+    }.property('firstName', 'lastName'),
     email: DS.attr('string'),
     password: DS.attr('string'),
     password_confirmation: DS.attr('string'),

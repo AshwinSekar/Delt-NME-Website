@@ -1,19 +1,34 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
+export default Ember.ObjectController.extend({
     loggedIn: function() {
         return !!this.get('model');
     }.property('model'),
 
+    attemptedTransition: null,
+    token: Ember.$.cookie('access_token'),
+    currentUser: Ember.$.cookie('auth_user'),
+
     tokenChanged: function() {
-    	if(Ember.isEmpty(this.get('token'))) {
-    		Ember.$.removeCookie('access_token');
-    		Ember.$.removeCookie('auth_user');
-    	} else {
-    		Ember.$.cookie('access_token', this.get('token'));
-    		Ember.$.cookie('auth_user', this.get('currentUser'));
-    	}
+        if (Ember.isEmpty(this.get('token'))) {
+            Ember.$.removeCookie('access_token');
+            Ember.$.removeCookie('auth_user');
+        } else {
+            Ember.$.cookie('access_token', this.get('token'));
+            Ember.$.cookie('auth_user', this.get('currentUser'));
+        }
     }.observes('token'),
+
+    init: function() {
+        this._super();
+        if (Ember.$.cookie('access_token')) {
+            Ember.$.ajaxSetup({
+                headers: {
+                    'Authorization': 'Bearer ' + Ember.$.cookie('access_token')
+                }
+            });
+        }
+    },
 
     actions: {
         login: function() {

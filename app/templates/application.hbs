@@ -15,13 +15,13 @@
                 <li><a href="#">Schedule</a></li>
                 <li><a href="#">Exam Study Info</a></li>
             </ul>
-            {{#if loggedIn}}
+            {{#if isAuthenticated}}
                 <ul class="nav navbar-right navbar-nav">
-                    {{#if model.isMaster}}
+                    {{#if currentUser.isMaster}}
                         <li><a href="#">Update Pledges</a></li>
                         <li><a href="#">Update Brothers</a></li>
                     {{else}}
-                        <li><a href="#">{{model.firstName}} {{model.lastName}}</a></li>
+                        <li><a href="#">{{currentUser.name}}</a></li>
                         <li><a href="#">Interview Brothers</a></li>
                     {{/if}}
                         <li><a href="#">Logout</a></li>

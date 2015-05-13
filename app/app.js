@@ -21,26 +21,26 @@ loadInitializers(App, config.modulePrefix);
 App.AuthenticatedRoute = Ember.Route.extend({
 
     beforeModel: function(transition) {
-        if (Ember.isEmpty(this.controllerFor('sessions').get('token'))) {
+        if (Ember.isEmpty(this.controllerFor('application').get('token'))) {
             return this.redirectToLogin(transition); // If the user isn't authenticated, make them login first
         }
     },
 
     redirectToLogin: function(transition) {
-        this.controllerfor('sessions').set('attemptedTransition', transition); // Store where they want to go after login
-        return this.transitionTo('sessions'); // Make them login and then transitionTo where they want to go
+        this.controllerFor('application').set('attemptedTransition', transition); // Store where they want to go after login
+        return this.transitionTo('loginNeeded'); // Make them login and then transitionTo where they want to go
     },
 
     actions: {
-    	error: function(reason, transition) {
-    		if(reason.status === 401) { // unauthorised access error
-    			this.redirectToLogin(transition);
-    		} else {
-    			console.log('Unkown problem: ' + reason + transition);
-    		}
-    	}
+        error: function(reason, transition) {
+            if (reason.status === 401) { // unauthorized access error
+                this.redirectToLogin(transition);
+            } else {
+                console.log('Unknown problem: ' + reason + " " + transition);
+            }
+        }
     }
-    
+
 });
 
 export default App;

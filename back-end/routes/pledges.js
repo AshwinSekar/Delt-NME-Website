@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var Pledge = require('../models/pledge');
+var nedb = require('nedb');
+var datastore = new nedb('pledges');
 
 /* GET pledges listing. */
 router.get('/', function(req, res, next) {
@@ -44,6 +47,18 @@ router.post('/', function(req, res, next) {
     						password_confirmation, 
     						apiKeys, 
     						errors);
+    datastore.insert(pledge, function(err) {
+        if (err) {
+            return next({
+                status: 500,
+                message: err
+            });
+        }
+
+        res.status(201).json({
+            pledge: pledge
+        });
+    });
     
 });
 

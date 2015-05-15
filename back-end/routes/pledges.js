@@ -13,7 +13,7 @@ function randomString(length, chars) {
     for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
     return result;
 }
-/* GET pledges listing. */
+/* GET all pledges listing. */
 router.get('/', function(req, res, next) {
     datastore.loadDatabase(function(err) {
         if (err) {
@@ -27,6 +27,26 @@ router.get('/', function(req, res, next) {
         });
         res.status(200).json({
             pledges: pledges
+        });
+    });
+});
+
+/* GET pledge by id listing. */
+router.get('/:pledge_id', function(req, res, next) {
+    var id = req.params.pledge_id;
+    datastore.loadDatabase(function(err) {
+        if (err) {
+            return next({
+                status: 500,
+                message: err
+            });
+        }
+        datastore.find({
+            id: id
+        }, function(err, docs) {
+            res.status(200).json({
+                pledge: docs[0]
+            });
         });
     });
 });

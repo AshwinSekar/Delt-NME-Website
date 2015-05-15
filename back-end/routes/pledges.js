@@ -78,8 +78,19 @@ router.put('/:pledge_id', function(req, res, next) {
                     message: err
                 });
             }
-            res.status(200).json({
-                pledge: req.body.pledge
+
+            datastore.find({
+                id: id
+            }, function(err, docs) {
+                if (err) {
+                    return next({
+                        status: 500,
+                        message: err
+                    });
+                }
+                res.status(200).json({
+                    pledge: docs[0]
+                });
             });
         })
     });

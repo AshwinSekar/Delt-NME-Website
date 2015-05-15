@@ -11,7 +11,6 @@ export default DS.Model.extend({
     }.property('firstName', 'lastName'),
     email: DS.attr('string'),
     password: DS.attr('string'),
-    password_confirmation: DS.attr('string'),
     apiKeys: DS.hasMany('apiKey'),
     errors: {}
 });

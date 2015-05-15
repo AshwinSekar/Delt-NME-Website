@@ -44,11 +44,51 @@ router.get('/:pledge_id', function(req, res, next) {
         datastore.find({
             id: id
         }, function(err, docs) {
+            if (err) {
+                return next({
+                    status: 500,
+                    message: err
+                });
+            }
             res.status(200).json({
                 pledge: docs[0]
             });
         });
     });
+});
+
+/* PUT pledge by id listing. */
+router.put('/:pledge_id', function(req, res, next) {
+    var id = req.params.pledge_id;
+    datastore.loadDatabase(function(err) {
+        if (err) {
+            return next({
+                status: 500,
+                message: err
+            });
+        }
+        datastore.update({
+            id: id
+        }, {
+            $set: req.body.pledge
+        }, {}, function(err, numReplaced) {
+            if (err) {
+                return next({
+                    status: 500,
+                    message: err
+                });
+            }
+            res.status(200).json({
+                pledge: req.body.pledge
+            });
+        })
+    });
+});
+
+/* DELETE pledge by id listing. */
+router.delete('/:pledge_id', function(req, res, next) {
+	var id = req.params.pledge_id;
+
 });
 
 /* POST pledges listing. */

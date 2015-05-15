@@ -3,8 +3,7 @@ var router = express.Router();
 var Pledge = require('../models/pledge');
 var nedb = require('nedb');
 var datastore = new nedb({
-    filename: 'data/pledges',
-    autoload: true
+    filename: 'data/pledges.db'
 });
 
 
@@ -14,13 +13,23 @@ function randomString(length, chars) {
     for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
     return result;
 }
-
 /* GET pledges listing. */
 router.get('/', function(req, res, next) {
-    res.send('respond with a resource');
+    datastore.loadDatabase(function(err) {
+        if (err) {
+            return next({
+                status: 500,
+                message: err
+            });
+        }
+        var pledges = datastore.getAllData().sort(function(a, b) {
+            return a.firstName.localeCompare(b.firstName);
+        });
+        res.status(200).json({
+            pledges: pledges
+        });
+    });
 });
-
-
 
 /* POST pledges listing. */
 router.post('/', function(req, res, next) {
@@ -59,17 +68,27 @@ router.post('/', function(req, res, next) {
     						password, 
     						apiKeys, 
     						errors);
-    datastore.insert(pledge, function(err) {
-        if (err) {
-            return next({
-                status: 500,
-                message: err
-            });
-        }
 
-        res.status(201).json({
-            pledge: pledge
-        });
+    datastore.loadDatabase(function(err) {
+    	if(err) {
+    		return next({
+    			status: 500,
+    			message: err
+    		});
+    	}
+
+    	datastore.insert(pledge, function(err) {
+    		if (err) {
+    			return next({
+    				status: 500,
+    				message: err
+    			});
+    		}
+
+    		res.status(201).json({
+    			pledge: pledge
+    		});
+    	});
     });
 
 });

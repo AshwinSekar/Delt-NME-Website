@@ -10,4 +10,8 @@ var pledge = function(isMaster, firstName, lastName, numberInterviewsDone, broth
 	this.password_confirmation = password_confirmation;
 	this.apiKeys = apiKeys;
 	this.errors = errors;	
+	this.timestamp = Date.now().toString();
+	this.id = this.timestamp;
 }
+
+module.exports = pledge;

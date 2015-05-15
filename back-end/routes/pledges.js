@@ -2,7 +2,18 @@ var express = require('express');
 var router = express.Router();
 var Pledge = require('../models/pledge');
 var nedb = require('nedb');
-var datastore = new nedb('pledges');
+var datastore = new nedb({
+    filename: 'data/pledges',
+    autoload: true
+});
+
+
+/* Generate password */
+function randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+    return result;
+}
 
 /* GET pledges listing. */
 router.get('/', function(req, res, next) {
@@ -10,17 +21,13 @@ router.get('/', function(req, res, next) {
 });
 
 
-function randomString(length, chars) {
-	var result = '';
-	for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
-	return result;	
-}
 
 /* POST pledges listing. */
 router.post('/', function(req, res, next) {
-    if (req.body.pledge) {
+    if (!req.body.pledge) {
         return next({
-            status: 400
+            status: 400,
+            message: "Bad request (No pledge model in body)"
         });
     }
 
@@ -35,9 +42,10 @@ router.post('/', function(req, res, next) {
     var apiKeys = {};
     var errors = {};
 
-    if (!isMaster || !firstName || !lastName || !name || !email || !password || !password_confirmation) {
+    if ((typeof isMaster !== 'boolean') || !firstName || !lastName || !name || !email) {
         return next({
-            status: 400
+            status: 400,
+            message: "One of these is bad: " + isMaster + "," + firstName + "," + lastName + "," + name + "," + email
         });
     }
 
@@ -49,7 +57,6 @@ router.post('/', function(req, res, next) {
     						name, 
     						email, 
     						password, 
-    						password_confirmation, 
     						apiKeys, 
     						errors);
     datastore.insert(pledge, function(err) {

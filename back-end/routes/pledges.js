@@ -10,6 +10,12 @@ router.get('/', function(req, res, next) {
 });
 
 
+function randomString(length, chars) {
+	var result = '';
+	for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+	return result;	
+}
+
 /* POST pledges listing. */
 router.post('/', function(req, res, next) {
     if (req.body.pledge) {
@@ -25,8 +31,7 @@ router.post('/', function(req, res, next) {
     var brothersInterviewed = {};
     var name = req.body.pledge.name;
     var email = req.body.pledge.email;
-    var password = req.body.pledge.password;
-    var password_confirmation = req.body.pledge.password_confirmation;
+    var password = randomString(8,"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
     var apiKeys = {};
     var errors = {};
 
@@ -59,7 +64,7 @@ router.post('/', function(req, res, next) {
             pledge: pledge
         });
     });
-    
+
 });
 
 module.exports = router;

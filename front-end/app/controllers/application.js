@@ -57,7 +57,7 @@ export default Ember.Controller.extend({
                 password: null
             });
 
-            Ember.$.post('/session', data).then(function(response) {
+            Ember.$.post('http://localhost:3000/session', data).then(function(response) {
                 Ember.$.ajaxSetup({
                     headers: {
                         'Authorization': 'Bearer ' + response.api_key.access_token

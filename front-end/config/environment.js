@@ -15,7 +15,8 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline'"
+      'script-src': "'self' 'unsafe-inline'",
+      'connect-src': "'self' http://localhost:3000"
     },
 
     APP: {

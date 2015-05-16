@@ -98,8 +98,26 @@ router.put('/:pledge_id', function(req, res, next) {
 
 /* DELETE pledge by id listing. */
 router.delete('/:pledge_id', function(req, res, next) {
-	var id = req.params.pledge_id;
-
+    var id = req.params.pledge_id;
+    datastore.loadDatabase(function(err) {
+        if (err) {
+            return next({
+                status: 500,
+                message: err
+            });
+        }
+        datastore.remove({
+            id: id
+        }, {}, function(err, numRemoved) {
+            if (err) {
+                return next({
+                    status: 500,
+                    message: err
+                });
+            }
+            res.sendStatus(200);
+        });
+    });
 });
 
 /* POST pledges listing. */

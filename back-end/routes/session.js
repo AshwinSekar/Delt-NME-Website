@@ -5,9 +5,9 @@ var datastore = new nedb({
     filename: 'data/pledges.db'
 });
 
-router.post('/', function(res, req, next) {
-    var email = req.req.body.email;
-    var password = req.req.body.password;
+router.post('/', function(req, res, next) {
+    var email = req.body.email;
+    var password = req.body.password;
     datastore.loadDatabase(function(err) {
         if (err) {
             return next({
@@ -22,8 +22,10 @@ router.post('/', function(res, req, next) {
         			message: err
         		});
         	}
-        	if (docs == null || docs.length == 0) {
-        		res.status(401)
+        	if (docs == null || docs.length == 0 || docs[0].password != password) {
+                return next({
+                    status: 401
+                });
         	} else {
         		var pledge = docs[0];
         		res.status(201).json({

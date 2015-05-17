@@ -1,3 +1,4 @@
+var jwt = require('jsonwebtoken');
 var pledge = function(isMaster, firstName, lastName, numberInterviewsDone, brothersInterviewed, name, email, password, apiKeys, errors) {
     this.isMaster = isMaster;
     this.firstName = firstName;
@@ -11,6 +12,7 @@ var pledge = function(isMaster, firstName, lastName, numberInterviewsDone, broth
     this.errors = errors;
     this.timestamp = Date.now().toString();
     this.id = this.timestamp;
+    this.access_token = jwt.sign({ id: id }, 'ayy lmao'); // Super secret key 👽
 }
 
 module.exports = pledge;

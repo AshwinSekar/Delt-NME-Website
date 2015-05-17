@@ -41,7 +41,7 @@ app.use(allowCrossDomain);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/pledges', pledges);
+app.use('/api/pledges', pledges);
 app.use('/session', session);
 
 // catch 404 and forward to error handler

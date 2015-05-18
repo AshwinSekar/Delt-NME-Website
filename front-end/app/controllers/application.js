@@ -6,6 +6,8 @@ export default Ember.Controller.extend({
     attemptedTransition: null,
     token: Ember.$.cookie('access_token'),
     currentUser: Ember.$.cookie('auth_user'),
+    isMaster: Ember.$.parseJSON(Ember.$.cookie('isMaster')),
+
 
     isAuthenticated: function() {
         return !Ember.isEmpty(this.get('currentUser'));
@@ -15,9 +17,11 @@ export default Ember.Controller.extend({
         if (Ember.isEmpty(this.get('token'))) {
             Ember.$.removeCookie('access_token');
             Ember.$.removeCookie('auth_user');
+            Ember.$.removeCookie('isMaster');
         } else {
             Ember.$.cookie('access_token', this.get('token'));
             Ember.$.cookie('auth_user', this.get('currentUser'));
+            Ember.$.cookie('isMaster', this.get('isMaster'));
         }
     }.observes('token'),
 
@@ -73,13 +77,14 @@ export default Ember.Controller.extend({
                 _this.store.find('pledge', response.api_key.user_id).then(function(pledge) {
                     _this.setProperties({
                         token: response.api_key.access_token,
-                        currentUser: pledge.getProperties('isMaster', 'name', 'email')
+                        currentUser: pledge.get('name'),
+                        isMaster: pledge.get('isMaster')
                     });
 
                     key.set('user', pledge);
                     key.save();
 
-                    pledge.get('apiKeys').content.push(key);
+                    pledge.get('apiKeys').pushObject(key);
 
                     if (attemptedTrans) {
                         attemptedTrans.retry();

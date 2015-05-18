@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
     token: Ember.$.cookie('access_token'),
     currentUser: Ember.$.cookie('auth_user'),
     isMaster: Ember.$.cookie('isMaster') === 'true',
+    pledge_id: Ember.$.cookie('pledge_id'),
 
 
     isAuthenticated: function() {
@@ -18,10 +19,12 @@ export default Ember.Controller.extend({
             Ember.$.removeCookie('access_token');
             Ember.$.removeCookie('auth_user');
             Ember.$.removeCookie('isMaster');
+            Ember.$.removeCookie('pledge_id');
         } else {
             Ember.$.cookie('access_token', this.get('token'));
             Ember.$.cookie('auth_user', this.get('currentUser'));
             Ember.$.cookie('isMaster', this.get('isMaster'));
+            Ember.$.cookie('pledge_id', this.get('pledge_id'));
         }
     }.observes('token'),
 
@@ -78,7 +81,8 @@ export default Ember.Controller.extend({
                     _this.setProperties({
                         token: response.api_key.access_token,
                         currentUser: pledge.get('name'),
-                        isMaster: pledge.get('isMaster')
+                        isMaster: pledge.get('isMaster'),
+                        pledge_id: response.api_key.user_id
                     });
 
                     key.set('user', pledge);

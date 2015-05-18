@@ -11,18 +11,18 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Schedule</a></li>
-                <li><a href="#">Exam Study Info</a></li>
+                <li {{bind-attr class="isHome:active"}}>{{#link-to 'index'}}Home{{/link-to}}</li>
+                <li {{bind-attr class="isSchedule:active"}}>{{#link-to 'schedule'}}Schedule{{/link-to}}</li>
+                <li {{bind-attr class="isExam:active"}}>{{#link-to 'exam'}}Exam Study Info{{/link-to}}</li>
             </ul>
             {{#if isAuthenticated}}
                 <ul class="nav navbar-right navbar-nav">
                     {{#if isMaster}}
-                        <li><a href="#">Update Pledges</a></li>
-                        <li><a href="#">Update Brothers</a></li>
+                        <li {{bind-attr class="isUpdateP:active"}}>{{#link-to 'updatePledges'}}Update Pledges{{/link-to}}</li>
+                        <li {{bind-attr class="isUpdateB:active"}}>{{#link-to 'updateBrothers'}}Update Brothers{{/link-to}}</li>
                     {{else}}
-                        <li><a href="#">{{currentUser}}</a></li>
-                        <li><a href="#">Interview Brothers</a></li>
+                        <li {{bind-attr class="isProfile:active"}}>{{#link-to 'profile'}}{{currentUser}}{{/link-to}}</li>
+                        <li {{bind-attr class="isInterview:active"}}>{{#link-to 'interview'}}Interview Brothers{{/link-to}}</li>
                     {{/if}}
                     <li><a href="#" {{action 'logout'}}>Logout</a></li>
                 </ul>

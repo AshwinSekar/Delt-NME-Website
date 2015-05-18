@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
     attemptedTransition: null,
     token: Ember.$.cookie('access_token'),
     currentUser: Ember.$.cookie('auth_user'),
-    isMaster: Ember.$.parseJSON(Ember.$.cookie('isMaster')),
+    isMaster: Ember.$.cookie('isMaster') == 'true',
 
 
     isAuthenticated: function() {

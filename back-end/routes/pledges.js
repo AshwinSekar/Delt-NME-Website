@@ -133,7 +133,7 @@ router.post('/', function(req, res, next) {
     var firstName = req.body.pledge.firstName;
     var lastName = req.body.pledge.lastName;
     var numberInterviewsDone = 0;
-    var brothersInterviewed = {};
+    var brothersInterviewed = [];
     var name = req.body.pledge.name;
     var email = req.body.pledge.email;
     var password = randomString(8,"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");

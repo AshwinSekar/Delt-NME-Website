@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import App from '../app';
 
-export default Ember.Route.extend({
+export default App.AuthenticatedPledgeRoute.extend({
 
 	setupController: function() {
         this.controllerFor('application').setProperties({

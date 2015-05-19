@@ -9,6 +9,33 @@
 	</div>
 	<div class="panel-body">
 		<form role="form">
+			{{#if displayPassError}}
+			<div class="alert alert-danger alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Passwords do not match!</strong>
+			</div>
+			{{/if}}
+
+			{{#if displayEmailChange}}
+			<div class="alert alert-success alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Email updated successfully!</strong>
+			</div>
+			{{/if}}
+
+			{{#if displayPassChange}}
+			<div class="alert alert-success alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Password updated successfully!</strong>
+			</div>
+			{{/if}}
+
 			<div class ="form-group">
 				<label for="email" class="control-label">Change Email:</label>
                 {{input type="text" placeholder=model.email class="form-control" value=email}}

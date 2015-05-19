@@ -2,7 +2,12 @@ import App from '../app';
 
 export default App.AuthenticatedPledgeRoute.extend({
 
-	setupController: function() {
+    model: function() {
+        return this.store.find('pledge', this.controllerFor('application').pledge_id);
+    },
+
+    setupController: function(controller, model) {
+        controller.set('model', model);
         this.controllerFor('application').setProperties({
             isHome: false,
             isSchedule: false,
@@ -11,6 +16,14 @@ export default App.AuthenticatedPledgeRoute.extend({
             isUpdateB: false,
             isProfile: true,
             isInterview: false
+        });
+        controller.setProperties({
+            email: '',
+            password: '',
+            confirm: '',
+            displayPassError: false,
+            displayPassChange: false,
+            displayEmailChange: false
         });
     }
 

@@ -22,10 +22,11 @@ export default Ember.Controller.extend({
         	pledge.set('isEditing',false);
         	pledge.save();
         },
-        
+
         show: function(id) {
-            Ember.$('#' + id + ".hide").hide().removeClass('hide');
-            Ember.$('#' + id).fadeToggle();
+        	Ember.$('#' + id + '.wow').toggleClass('dropup');
+            Ember.$('#' + id + '.hide').hide().removeClass('hide');
+            Ember.$('#' + id + '.controls').fadeToggle();
         }
     }
 });

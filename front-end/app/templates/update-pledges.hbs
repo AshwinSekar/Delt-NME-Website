@@ -10,12 +10,12 @@
 		<h3 class="panel-title row">
 			<div class="col-xs-10">
 				<a href=".{{pledge.id}}" class="btn" data-toggle="collapse" {{action 'show' pledge.id}} aria-expanded="false" aria-controls={{pledge.id}}>
-					{{pledge.name}}
+					{{pledge.name}} <span class="wow" id={{pledge.id}}><span class="caret"></span></span>
 				</a>
 				<span class="badge">{{pledge.numberInterviewsDone}} brothers interviewed</span>
 			</div>
 			<div class="col-xs-2">
-				<div class="text-right hide" id={{pledge.id}}>
+				<div class="text-right hide controls" id={{pledge.id}}>
 					{{#if pledge.isEditing}}
 					<a class="btn" {{action 'save' pledge.id}} aria-label="Save">
 						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>

@@ -13,6 +13,7 @@ var pledge = function(isMaster, firstName, lastName, numberInterviewsDone, broth
     this.timestamp = Date.now().toString();
     this.id = this.timestamp;
     this.access_token = jwt.sign({ id: this.id }, 'ayy lmao'); // Super secret key 👽
+    this.isEditing = false;
 }
 
 module.exports = pledge;

@@ -115,7 +115,7 @@ router.delete('/:pledge_id', function(req, res, next) {
                     message: err
                 });
             }
-            res.sendStatus(200);
+            res.sendStatus(204);
         });
     });
 });

@@ -2,6 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+    adding: false,
+    email: '',
+    firstName: '',
+    lastName: '',
+    name: function() {
+      return this.get('firstName') + " " + this.get('lastName');
+    }.property('firstName','lastName'),
+
     actions: {
 
         edit: function(id, isEditing) {
@@ -27,6 +35,15 @@ export default Ember.Controller.extend({
         	Ember.$('#' + id + '.wow').toggleClass('dropup');
             Ember.$('#' + id + '.hide').hide().removeClass('hide');
             Ember.$('#' + id + '.controls').fadeToggle();
+        },
+
+        add: function() {
+          this.setProperties({
+            adding: true,
+            email: '',
+            firstName: '',
+            lastName: '',
+          });
         }
     }
 });

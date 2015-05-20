@@ -1,7 +1,53 @@
 <br>
 <br>
 <br>
-<h2>Update Pledge list</h2>
+<h2 class="row">
+	<div class="col-xs-10">
+		Update Pledge list 
+	</div>
+	<div class="col-xs-2 text-right">
+		{{#unless adding}}
+		<a class="btn" {{action 'add'}} aria-label="Add">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			Add a pledge
+		</a>
+		{{/unless}}
+	</div>
+</h2>
+
+{{#if adding}}
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title row">
+			<div class="col-xs-10">
+				<a class="btn"> {{name}}</a>
+			</div>
+			<div class="col-xs-2 text-right">
+				<a class="btn" {{action 'saveAdd'}} aria-label="Save">
+					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+				</a>
+				<a class="btn" {{action 'closeAdd'}} aria-label="Cancel">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</a>
+			</div>
+		</h3>
+	</div>
+	<ul class="list-group">
+		<li class="list-group-item">
+			<strong>First Name:</strong> 
+			{{input type="text" class="form-control" value=firstName}}
+		</li>
+		<li class="list-group-item">
+			<strong>Last Name:</strong> 
+			{{input type="text" class="form-control" value=lastName}}
+		</li>
+		<li class="list-group-item">
+			<strong>Email:</strong> 
+			{{input type="text" class="form-control" value=email}}
+		</li>
+	</ul>
+</div>
+{{/if}}
 
 {{#each pledge in model}}
 {{#unless pledge.isMaster}}

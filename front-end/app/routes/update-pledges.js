@@ -24,6 +24,7 @@ export default App.AuthenticatedMasterRoute.extend({
             isProfile: false,
             isInterview: false
         });
+        controller.set("adding",false);
     }
 
 });

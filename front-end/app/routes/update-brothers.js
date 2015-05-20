@@ -2,7 +2,19 @@ import App from '../app';
 
 export default App.AuthenticatedMasterRoute.extend({
 
-	setupController: function() {
+    model: function() {
+        return this.store.find('brother').then(function(brothers) {
+            brothers.forEach(function(brother) {
+                brother.rollback();
+                brother.set('isEditing', false);
+                brother.save();
+            });
+            return brothers;
+        });
+    },
+
+    setupController: function(controller, model) {
+        this._super(controller,model);
         this.controllerFor('application').setProperties({
             isHome: false,
             isSchedule: false,
@@ -12,6 +24,7 @@ export default App.AuthenticatedMasterRoute.extend({
             isProfile: false,
             isInterview: false
         });
+        controller.set('addding', false);
     }
 
 });

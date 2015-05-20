@@ -9,5 +9,8 @@ export default DS.Model.extend({
     year: DS.attr('string'),
     question: DS.attr('string'),
     answer: DS.attr('string'),
-    falseAnswers: DS.attr()
+    falseAnswer1: DS.attr('string'),
+    falseAnswer2: DS.attr('string'),
+    falseAnswer3: DS.attr('string'),
+    falseAnswer4: DS.attr('string'),
 });

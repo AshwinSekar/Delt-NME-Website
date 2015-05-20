@@ -103,6 +103,11 @@
 			{{pledge.email}}
 			{{/if}}
 		</li>
+		{{#if pledge.isEditing}}
+		<li class="list-group-item">
+			<button type="button" class="btn btn-danger" {{action 'delete' pledge.id}}>Delete {{pledge.name}}</button>
+		</li>
+		{{/if}}
 	</ul>
 </div>
 {{/unless}}

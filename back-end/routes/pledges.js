@@ -134,30 +134,25 @@ router.post('/', function(req, res, next) {
     var lastName = req.body.pledge.lastName;
     var numberInterviewsDone = 0;
     var brothersInterviewed = [];
-    var name = req.body.pledge.name;
     var email = req.body.pledge.email;
     var password = randomString(8,"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
     var apiKeys = [];
     var errors = {};
-
-    if ((typeof isMaster !== 'boolean') || !firstName || !lastName || !name || !email) {
+    if ((typeof isMaster !== 'boolean') || !firstName || !lastName || !email) {
         return next({
             status: 400,
-            message: "One of these is bad: " + isMaster + "," + firstName + "," + lastName + "," + name + "," + email
+            message: "One of these is bad: " + isMaster + "," + firstName + "," + lastName + "," + email
         });
     }
-
     var pledge = new Pledge(isMaster, 
     						firstName,
     						lastName, 
     						numberInterviewsDone, 
     						brothersInterviewed, 
-    						name, 
     						email, 
     						password, 
     						apiKeys, 
     						errors);
-
     datastore.loadDatabase(function(err) {
     	if(err) {
     		return next({

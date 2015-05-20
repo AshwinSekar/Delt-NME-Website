@@ -1,11 +1,10 @@
 var jwt = require('jsonwebtoken');
-var pledge = function(isMaster, firstName, lastName, numberInterviewsDone, brothersInterviewed, name, email, password, apiKeys, errors) {
+var pledge = function(isMaster, firstName, lastName, numberInterviewsDone, brothersInterviewed, email, password, apiKeys, errors) {
     this.isMaster = isMaster;
     this.firstName = firstName;
     this.lastName = lastName;
     this.numberInterviewsDone = numberInterviewsDone;
     this.brothersInterviewed = brothersInterviewed;
-    this.name = name;
     this.email = email;
     this.password = password;
     this.apiKeys = apiKeys;

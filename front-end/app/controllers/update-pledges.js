@@ -44,6 +44,23 @@ export default Ember.Controller.extend({
             firstName: '',
             lastName: '',
           });
+        },
+
+        saveAdd: function() {
+          var pledge = this.get('store').createRecord('pledge', {
+            isMaster: false,
+            firstName: this.get('firstName'),
+            lastName: this.get('lastName'),
+            email: this.get('email')
+          });
+          pledge.save();
+          this.set('adding',false);
+        },
+
+        closeAdd: function() {
+          this.setProperties({
+            adding: false,
+          });
         }
     }
 });

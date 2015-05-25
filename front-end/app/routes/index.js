@@ -7,7 +7,9 @@ export default Ember.Route.extend({
             pledges.forEach(function(pledge) {
                 pledge.rollback();
             });
-            return pledges;     
+            return pledges.toArray().sort(function(a,b) {
+                return b.get('numberInterviewsDone') - a.get('numberInterviewsDone');
+            });
         });
     },
 

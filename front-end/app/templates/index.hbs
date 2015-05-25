@@ -1,15 +1,16 @@
 <h2>Scoreboard</h2>
-{{#each pledge in model}}
-
-{{#unless pledge.isMaster}}
-<div class="well">
-	<h4>{{pledge.name}}:</h4>
-	<div class="progress">
-		{{progress-bar pledge.numberInterviewsDone totalBrothers}}
+<div class="well container">
+	{{#each pledge in model}}
+	{{#unless pledge.isMaster}}
+	<div class="col-md-2 text-right">
+		<h4>{{pledge.name}}:</h4>
 	</div>
+	<div class="col-md-10">
+		<div class="progress">
+			{{progress-bar pledge.numberInterviewsDone totalBrothers}}
+		</div>
+	</div>
+	{{/unless}}
+	{{/each}}
 </div>
-
-{{/unless}}
-
-{{/each}}
 {{outlet}}

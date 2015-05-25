@@ -3,7 +3,12 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
     model: function() {
-        return this.store.find('pledge');
+        return this.store.find('pledge').then(function(pledges) {
+            pledges.forEach(function(pledge) {
+                pledge.rollback();
+            });
+            return pledges;     
+        });
     },
 
     setupController: function(controller, model) {

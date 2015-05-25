@@ -1,16 +1,18 @@
-<h2>Scoreboard</h2>
+<h2>Interview Scoreboard</h2>
 <div class="well container">
-	{{#each pledge in model}}
-	{{#unless pledge.isMaster}}
-	<div class="col-md-2 text-right">
-		<h4>{{pledge.name}}:</h4>
-	</div>
-	<div class="col-md-10">
-		<div class="progress">
-			{{progress-bar pledge.numberInterviewsDone totalBrothers}}
-		</div>
-	</div>
-	{{/unless}}
-	{{/each}}
+    {{#each pledge in model}} 
+    {{#unless pledge.isMaster}}
+    <div class="row">
+        <div class="col-md-2 text-right">
+            {{pledge.name}}:
+        </div>
+        <div class="col-md-10">
+            <div class="progress">
+                {{progress-bar pledge.numberInterviewsDone totalBrothers}}
+            </div>
+        </div>
+    </div>
+    {{/unless}} 
+    {{/each}}
 </div>
 {{outlet}}

@@ -2,4 +2,41 @@
 <br>
 <br>
 <h2>Interview Brothers</h2>
+
+<div role="tabpanel">
+	<!-- Nav tabs --> 
+	<ul class="nav nav-tabs" role="tablist">
+		<li role="presentation" class="active">
+			<a href="#incomplete" aria-controls="incomplete" role="tab" data-toggle="tab">
+				Pending Interviews
+			</a>
+		</li>
+		<li role="presentation">
+			<a href="#complete" aria-controls="complete" role="tab" data-toggle="tab">
+				Completed Interviews
+			</a>
+		</li>
+		<li role="presentation">
+			<a href="#failed" aria-controls="failed" role="tab" data-toggle="tab">
+				Failed Interviews
+			</a>
+		</li>
+	</ul>
+
+	<!-- Tab panes -->
+	<div class="tab-content">
+		<div role="tabpanel" class="tab-pane fade in active" id="incomplete">
+			<h2>Pending Interviews</h2>
+		</div>
+		<div role="tabpanel" class="tab-pane fade" id="complete">
+			<h2>Completed Interviews</h2>
+		</div>
+		<div role="tabpanel" class="tab-pane fade" id="failed">
+			<h2>Failed Interviews</h2>
+		</div>
+	</div>
+</div>
+
+
+
 {{outlet}}

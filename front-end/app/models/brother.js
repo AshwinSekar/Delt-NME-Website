@@ -13,4 +13,10 @@ export default DS.Model.extend({
     falseAnswer2: DS.attr('string'),
     falseAnswer3: DS.attr('string'),
     falseAnswer4: DS.attr('string'),
+    passedPledges: DS.hasMany('pledge', {
+        inverse: 'brothersInterviewed'
+    }),
+    failedPledges: DS.hasMany('pledge', {
+        inverse: 'brothersFailed'
+    })
 });

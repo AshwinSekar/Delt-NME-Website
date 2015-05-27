@@ -5,7 +5,8 @@ export default DS.Model.extend({
     firstName: DS.attr('string'),
     lastName: DS.attr('string'),
     numberInterviewsDone: DS.attr('number'),
-    brothersInterviewed: DS.attr(),
+    brothersInterviewed: DS.hasMany('brother'),
+    brothersFailed: DS.hasMany('brother'),
     isEditing: DS.attr('boolean'),
     name: function() {
         return this.get('firstName') + ' ' + this.get('lastName');

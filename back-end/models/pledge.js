@@ -5,6 +5,7 @@ var pledge = function(isMaster, firstName, lastName, numberInterviewsDone, broth
     this.lastName = lastName;
     this.numberInterviewsDone = numberInterviewsDone;
     this.brothersInterviewed = brothersInterviewed;
+    this.brothersFailed = [];
     this.email = email;
     this.password = password;
     this.apiKeys = apiKeys;

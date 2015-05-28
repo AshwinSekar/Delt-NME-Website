@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
     successMessage: "",
     brothersPending: function() {
         var _this = this;
+        if(!this.get('doneLoading')) return [];
         return this.get('brothers').filter(function(item) {
             return !(_this.get('model').get('brothersInterviewed').contains(item) ||
               	     _this.get('model').get('brothersFailed').contains(item));

@@ -4,8 +4,10 @@ export default App.AuthenticatedPledgeRoute.extend({
 
     beforeModel: function() {
         var _this = this;
+        this.controllerFor('interview').set('doneLoading', false);
         this.store.find('brother').then(function(brothers) {
             _this.controllerFor('interview').set('brothers', brothers);
+            _this.controllerFor('interview').set('doneLoading',true);
         });
     },
 

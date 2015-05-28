@@ -10,8 +10,12 @@ export default DS.Model.extend({
     numberInterviewsFailed: function() {
         return this.get('brothersFailed').get('length');
     }.property('brothersFailed'),
-    brothersInterviewed: DS.hasMany('brother'),
-    brothersFailed: DS.hasMany('brother'),
+    brothersInterviewed: DS.hasMany('brother', {
+        async: true
+    }),
+    brothersFailed: DS.hasMany('brother', {
+        async: true
+    }),
     isEditing: DS.attr('boolean'),
     name: function() {
         return this.get('firstName') + ' ' + this.get('lastName');

@@ -3,12 +3,7 @@ import App from '../app';
 export default App.AuthenticatedPledgeRoute.extend({
 
     model: function() {
-        return this.store.find('brother').then(function(brothers) {
-            brothers.forEach(function(brother) {
-                brother.rollback();
-            });
-            return brothers;
-        });
+        return this.store.find('pledge', this.controllerFor('application').pledge_id);
     },
 
     setupController: function(controller, model) {
@@ -21,6 +16,14 @@ export default App.AuthenticatedPledgeRoute.extend({
             isUpdateB: false,
             isProfile: false,
             isInterview: true
+        });
+        this.store.find('brother').then(function(brothers) {
+            var pending = brothers.filter(function(item) {
+                return !(model.get('brothersInterviewed').contains(item) ||
+                         model.get('brothersFailed').contains(item));
+            });
+            controller.set('brothersPending', pending);
+            controller.set('numPending', pending.get('length'));
         });
     }
 

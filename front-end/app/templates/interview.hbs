@@ -9,16 +9,19 @@
 		<li role="presentation" class="active">
 			<a href="#incomplete" aria-controls="incomplete" role="tab" data-toggle="tab">
 				Pending Interviews
+			<span class="badge">{{numPending}}</span>
 			</a>
 		</li>
 		<li role="presentation">
 			<a href="#complete" aria-controls="complete" role="tab" data-toggle="tab">
 				Completed Interviews
+			<span class="badge">{{model.numberInterviewsDone}}</span>
 			</a>
 		</li>
 		<li role="presentation">
 			<a href="#failed" aria-controls="failed" role="tab" data-toggle="tab">
 				Failed Interviews
+			<span class="badge">{{model.numberInterviewsFailed}}</span>
 			</a>
 		</li>
 	</ul>
@@ -28,7 +31,7 @@
 		<div role="tabpanel" class="tab-pane fade in active" id="incomplete">
 			<h2>Pending Interviews</h2>
 			<div class="list-group">
-				{{#each brother in brothers}}
+				{{#each brother in brothersPending}}
 				<a class="list-group-item">{{brother.name}}</a>
 				{{/each}}
 			</div>

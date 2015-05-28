@@ -5,10 +5,10 @@ export default Ember.Controller.extend({
     errorMessage: "",
     successMessage: "",
     brothersPending: function() {
-    	var _this = this;
+        var _this = this;
         return this.get('brothers').filter(function(item) {
             return !(_this.get('model').get('brothersInterviewed').contains(item) ||
-                	 _this.get('model').get('brothersFailed').contains(item));
+              	     _this.get('model').get('brothersFailed').contains(item));
         });
     }.property('brothers', 'model'),
 
@@ -27,8 +27,11 @@ export default Ember.Controller.extend({
                 answer: answer
             };
             var _this = this;
+            var brother = _this.get('brothers').findBy('id',id);
             Ember.$.post("http://localhost:3000/interview", data).then(function() {
                 _this.get('model').reload();
+                _this.get('brothersPending').removeObject(brother);
+                _this.decrementProperty('numPending');
             });
         }
     }

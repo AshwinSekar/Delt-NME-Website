@@ -26,6 +26,9 @@ export default App.AuthenticatedPledgeRoute.extend({
             isProfile: false,
             isInterview: true
         });
+        controller.setProperties({
+            alert: ''
+        })
     }
 
 });

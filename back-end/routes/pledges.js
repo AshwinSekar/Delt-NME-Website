@@ -135,7 +135,7 @@ router.post('/', function(req, res, next) {
     var numberInterviewsDone = 0;
     var brothersInterviewed = [];
     var email = req.body.pledge.email;
-    var password = randomString(8,"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    var password = email;
     var apiKeys = [];
     var errors = {};
     if ((typeof isMaster !== 'boolean') || !firstName || !lastName || !email) {

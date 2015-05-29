@@ -58,7 +58,9 @@ router.post('/', function(req, res, next) {
                                     message: err
                                 });
                             }
-                            res.status(201).json({});
+                            res.status(201).json({
+                                passed: false
+                            });
                         });
                     } else {
                         // Pledge passed the interview
@@ -75,7 +77,9 @@ router.post('/', function(req, res, next) {
                                     message: err
                                 });
                             }
-                            res.status(201).json({});
+                            res.status(201).json({
+                                passed: true
+                            });
                         });
                     }
 

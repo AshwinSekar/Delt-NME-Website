@@ -12,7 +12,6 @@ var brother = function(firstName, lastName, year, question, answer, fa1, fa2, fa
 	this.id = this.timestamp;
 	this.isEditing = false;
 	this.errors = {};
-	this.pledges = [];
 }
 
 module.exports = brother;

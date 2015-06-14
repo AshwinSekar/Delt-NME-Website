@@ -7,7 +7,7 @@ export default App.AuthenticatedPledgeRoute.extend({
     },
 
     setupController: function(controller, model) {
-        controller.set('model', model);
+        this._super(controller, model)
         this.controllerFor('application').setProperties({
             isHome: false,
             isSchedule: false,

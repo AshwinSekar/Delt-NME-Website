@@ -8,3 +8,21 @@ Features:
 -  Easily adaptable from sememster to semester. Just load in a new set of pledges, update brother Q's and launch.  
 
 Ember.js/Bootstrap front-end, Node.js/Express back-end
+
+# Todo:
+## Front-end:
+- [ ] Fix brotherspending problem
+- [ ] Add loginNeeded page
+- [ ] Add alert on failed login
+- [ ] Fix scoreboard style
+
+## Back-end:
+- [ ] Add JSON web token authorization check for REST api
+- [ ] Hash passwords
+- [ ] Hash question answer with salt/secret key
+- [ ] Upgrade to MongoDB
+
+## Testing:
+- [ ] Deploy to a domain
+- [ ] Concurrency tests
+- [ ] Penetration testing

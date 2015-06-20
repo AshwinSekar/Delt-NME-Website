@@ -13,7 +13,7 @@ Ember.js/Bootstrap front-end, Node.js/Express back-end
 ## Front-end:
 - [x] Fix brotherspending problem
 - [ ] Add loginNeeded page
-- [ ] Add alert on failed login
+- [x] Add alert on failed login
 - [ ] Fix scoreboard style
 
 ## Back-end:

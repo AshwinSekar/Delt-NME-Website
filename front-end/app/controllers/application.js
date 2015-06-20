@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-    loginAttemptFailed: false,
     attemptedTransition: null,
     token: Ember.$.cookie('access_token'),
     currentUser: Ember.$.cookie('auth_user'),
@@ -45,7 +44,6 @@ export default Ember.Controller.extend({
             password: null,
             token: null,
             currentUser: null,
-            loginAttemptFailed: false
         });
         Ember.$.ajaxSetup({
             headers: {
@@ -62,7 +60,6 @@ export default Ember.Controller.extend({
             var data = this.getProperties('email', 'password');
 
             this.setProperties({
-                email: null,
                 password: null
             });
 
@@ -98,13 +95,15 @@ export default Ember.Controller.extend({
 
             }, function(error) {
                 if (error.status === 401) {
-                    _this.set('loginAttemptFailed',true);
-                    alert("Wrong email or password, please try again");
+                    Ember.$('#alertError').fadeIn();
                 }
             });
 
 
-        }
+        },
 
+        closeError : function() {
+            Ember.$('#alertError').fadeOut();
+        }
     }
 });

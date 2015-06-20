@@ -15,6 +15,9 @@ Ember.js/Bootstrap front-end, Node.js/Express back-end
 - [ ] Add loginNeeded page
 - [x] Add alert on failed login
 - [ ] Fix scoreboard style
+- [ ] Add form validation for updatePledges
+- [ ] Add form validation for updateBrothers
+- [ ] Overhaul website wide UI style
 
 ## Back-end:
 - [ ] Add JSON web token authorization check for REST api

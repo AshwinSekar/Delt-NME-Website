@@ -4,14 +4,11 @@ export default Ember.Controller.extend({
 
     brothersPending: function() {
         var _this = this;
-        if (!this.get('doneLoading')) {
-            return [];
-        }
-        return this.get('brothers').filter(function(item) {
-            return !(_this.get('model').get('brothersInterviewed').contains(item) ||
-                _this.get('model').get('brothersFailed').contains(item));
+        return this.get('model').brothers.filter(function(item) {
+            return !(_this.get('model').pledge.get('brothersInterviewed').contains(item) ||
+                _this.get('model').pledge.get('brothersFailed').contains(item));
         });
-    }.property('brothers', 'model'),
+    }.property('model'),
 
     numPending: function() {
         return this.get('brothersPending').get('length');
@@ -22,15 +19,15 @@ export default Ember.Controller.extend({
             var answer = Ember.$('#answer' + id)[0].value;
             var year = Ember.$('#year' + id)[0].value;
             var data = {
-                pledgeId: this.get('model').id,
+                pledgeId: this.get('model').pledge.id,
                 brotherId: id,
                 year: year,
                 answer: answer
             };
             var _this = this;
-            var brother = _this.get('brothers').findBy('id', id);
+            var brother = _this.get('model').brothers.findBy('id', id);
             Ember.$.post("http://localhost:3000/interview", data).then(function(response) {
-                _this.get('model').reload();
+                _this.get('model').pledge.reload();
                 _this.get('brothersPending').removeObject(brother);
                 _this.decrementProperty('numPending');
 

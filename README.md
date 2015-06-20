@@ -11,7 +11,7 @@ Ember.js/Bootstrap front-end, Node.js/Express back-end
 
 # Todo:
 ## Front-end:
-- [ ] Fix brotherspending problem
+- [x] Fix brotherspending problem
 - [ ] Add loginNeeded page
 - [ ] Add alert on failed login
 - [ ] Fix scoreboard style

@@ -1,18 +1,13 @@
 import App from '../app';
+import Ember from 'ember';
 
 export default App.AuthenticatedPledgeRoute.extend({
 
-    beforeModel: function() {
-        var _this = this;
-        this.controllerFor('interview').set('doneLoading', false);
-        this.store.find('brother').then(function(brothers) {
-            _this.controllerFor('interview').set('brothers', brothers);
-            _this.controllerFor('interview').set('doneLoading',true);
-        });
-    },
-
     model: function() {
-        return this.store.find('pledge', this.controllerFor('application').pledge_id);
+        return Ember.RSVP.hash({
+           brothers: this.store.find('brother'),
+           pledge: this.store.find('pledge', this.controllerFor('application').pledge_id) 
+        });
     },
 
     setupController: function(controller, model) {
@@ -28,7 +23,7 @@ export default App.AuthenticatedPledgeRoute.extend({
         });
         controller.setProperties({
             alert: ''
-        })
+        });
     }
 
 });

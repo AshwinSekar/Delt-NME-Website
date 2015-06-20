@@ -12,5 +12,4 @@ export default Router.map(function() {
     this.route('interview');
     this.route('updatePledges');
     this.route('updateBrothers');
-    this.route('loginNeeded');
 });

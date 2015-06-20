@@ -31,7 +31,7 @@ App.AuthenticatedPledgeRoute = Ember.Route.extend({
 
     redirectToLogin: function(transition) {
         this.controllerFor('application').set('attemptedTransition', transition); // Store where they want to go after login
-        return this.transitionTo('loginNeeded'); // Make them login and then transitionTo where they want to go
+        return this.transitionTo('index'); // Make them login and then transitionTo where they want to go
     },
 
     actions: {
@@ -60,7 +60,7 @@ App.AuthenticatedMasterRoute = Ember.Route.extend({
 
     redirectToLogin: function(transition) {
         this.controllerFor('application').set('attemptedTransition', transition); // Store where they want to go after login
-        return this.transitionTo('loginNeeded'); // Make them login and then transitionTo where they want to go
+        return this.transitionTo('index'); // Make them login and then transitionTo where they want to go
     },
 
     actions: {

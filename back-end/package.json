@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "jsonwebtoken": "^5.0.1",
+    "jssha": "^2.0.1",
     "nedb": "^1.1.2"
   }
 }

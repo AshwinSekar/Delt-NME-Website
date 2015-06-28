@@ -22,7 +22,7 @@ Ember.js/Bootstrap front-end, Node.js/Express back-end
 ## Back-end:
 - [x] Add JSON web token authorization check for Pledge REST api
 - [x] Add JSON web token authorization check for Brother REST api
-- [ ] Hash passwords
+- [x] Hash passwords
 - [ ] Hash question answer with salt/secret key
 - [ ] Upgrade to MongoDB
 

@@ -4,10 +4,13 @@ var nedb = require('nedb');
 var datastore = new nedb({
     filename: 'data/pledges.db'
 });
+var jsSHA = require("jssha");
 
 router.post('/', function(req, res, next) {
     var email = req.body.email;
-    var password = req.body.password;
+    var sha1 = new jsSHA("SHA-1","TEXT");
+    sha1.update(req.body.password)
+    var password = sha1.getHash("HEX");
     datastore.loadDatabase(function(err) {
         if (err) {
             return next({

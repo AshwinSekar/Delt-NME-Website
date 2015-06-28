@@ -6,7 +6,7 @@ var datastore = new nedb({
     filename: 'data/pledges.db'
 });
 var jwt = require('jsonwebtoken');
-
+var jsSHA = require("jssha");
 
 /* GET all pledges listing. */
 router.get('/', function(req, res, next) {
@@ -98,6 +98,11 @@ router.put('/:pledge_id', function(req, res, next) {
                         status: 401,
                         message: "Unauthorized"
                     })
+                }
+                if(req.body.pledge.password) {
+                    var sha1 = new jsSHA("SHA-1","TEXT");
+                    sha1.update(req.body.pledge.password);
+                    req.body.pledge.password = sha1.getHash("HEX");
                 }
                 datastore.update({
                     id: id
@@ -229,7 +234,9 @@ router.post('/', function(req, res, next) {
         var numberInterviewsDone = 0;
         var brothersInterviewed = [];
         var email = req.body.pledge.email;
-        var password = email;
+        var sha1 = new jsSHA("SHA-1","TEXT")
+        sha1.update(email);
+        var password = sha1.getHash("HEX");
         var apiKeys = [];
         var errors = {};
         if ((typeof isMaster !== 'boolean') || !firstName || !lastName || !email) {
